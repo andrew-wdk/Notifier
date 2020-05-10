@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Recipient;
+use Illuminate\Http\UploadedFile;
+use App\Imports\RecipientsImport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class RecipientsController extends Controller
 {
@@ -95,5 +98,16 @@ class RecipientsController extends Controller
         $recipient->delete();
 
         return redirect()->route('recipients.index');
+    }
+
+    public function import(Request $request)
+    {
+        // $path = $request->file('excel')->path();
+
+        // dd($request->file('excel'));
+
+        Excel::import(new RecipientsImport, request()->file('excel'));
+
+        return redirect('/recipients')->with('success', 'All good!');
     }
 }

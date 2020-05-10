@@ -8,10 +8,22 @@
 <div class="row">
 
     <div class="col-xs-12 col-md-12">
-
-        <a href="{{ route('recipients.create') }}" class="btn btn-block btn-primary">
-            Add new
-        </a>
+        <div class="row" style="text-align: center">
+            <div class="col-xs-6 col-md-6" style="margin: auto">
+                <a href="{{ route('recipients.create') }}" class="btn btn-block btn-primary">
+                    Add new
+                </a>
+            </div>
+            <div class="col-xs-6 col-md-6">
+                {{ Form::open(['class' => 'margin-left-10', 'route' => 'recipients.import', 'method' => 'POST', 'files' => true]) }}
+                <label for="excel" class="btn btn-primary" style="margin-bottom: 0px">
+                    Import from excel file
+                    <input type="file" name="excel" id="excel" style="display:none;" required="required">
+                </label>
+                <button type="submit" class="btn btn-primary fa fa-paper-plane"> </button>
+                {{ Form::close() }}
+            </div>
+        </div>
         <br>
 
         <div class="box">

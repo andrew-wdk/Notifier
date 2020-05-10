@@ -26,3 +26,4 @@ Route::resource('users', 'UsersController');
 Route::resource('messages', 'MessagesController');
 
 Route::resource('recipients', 'RecipientsController');
+Route::post('recipients/import', 'RecipientsController@import')->name('recipients.import');
