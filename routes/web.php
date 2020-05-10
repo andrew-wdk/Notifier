@@ -20,3 +20,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::view('/home', 'home')->middleware('auth');
+
+Route::resource('users', 'UsersController');
+
+Route::resource('messages', 'MessagesController');
+
+Route::resource('recipients', 'RecipientsController');

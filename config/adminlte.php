@@ -213,80 +213,146 @@ return [
             'search' => true,
             'topnav' => true,
         ],
-        [
-            'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
-        ],
-        [
-            'text'        => 'pages',
-            'url'         => 'admin/pages',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
-            'label_color' => 'success',
-        ],
         ['header' => 'account_settings'],
         [
-            'text' => 'profile',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
+            'text'        => 'Users',
+            'url'         => 'users',
+            'icon'        => 'fa fa-fw fa-user',
+            'label_color' => 'success',
+            // 'submenu'     =>  [
+            //     [
+            //         'text' => 'Add User',
+            //         'url'  => 'users/create',
+            //         'icon'  => 'fa fa-plus'
+
+            //     ],
+            //     [
+            //         'text' => 'Show User',
+            //         'url'  => 'dashboard/user',
+            //         'icon'  => 'fa fa-eye'
+
+            //     ]
+            // ]
         ],
         [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
+            'text'        => 'Recipients',
+            'url'         => 'recipients',
+            'icon'        => 'fa fa-fw fa-home',
+            'label_color' => 'success',
+            // 'submenu'     =>  [
+            //     [
+            //         'text' => 'Add Country',
+            //         'url'  => 'dashboard/country/create',
+            //         'icon'  => 'fa fa-plus'
+
+            //     ],
+            //     [
+            //         'text' => 'Show Country',
+            //         'url'  => 'dashboard/country',
+            //         'icon'  => 'fa fa-eye'
+
+            //     ]
+            // ]
         ],
         [
-            'text'    => 'multilevel',
-            'icon'    => 'fas fa-fw fa-share',
-            'submenu' => [
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-                [
-                    'text'    => 'level_one',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-            ],
+            'text'        => 'Messsages',
+            'url'         => 'messages',
+            'icon'        => 'fa fa-fw fa-home',
+            'label_color' => 'success',
+            // 'submenu'     =>  [
+            //     [
+            //         'text' => 'Add City',
+            //         'url'  => 'dashboard/city/create',
+            //         'icon'  => 'fa fa-plus'
+
+            //     ],
+            //     [
+            //         'text' => 'Show City',
+            //         'url'  => 'dashboard/city',
+            //         'icon'  => 'fa fa-eye'
+
+            //     ]
+            // ]
         ],
-        ['header' => 'labels'],
-        [
-            'text'       => 'important',
-            'icon_color' => 'red',
-        ],
-        [
-            'text'       => 'warning',
-            'icon_color' => 'yellow',
-        ],
-        [
-            'text'       => 'information',
-            'icon_color' => 'cyan',
-        ],
+    //     [
+    //         'text' => 'search',
+    //         'search' => true,
+    //         'topnav' => true,
+    //     ],
+    //     [
+    //         'text' => 'blog',
+    //         'url'  => 'admin/blog',
+    //         'can'  => 'manage-blog',
+    //     ],
+    //     [
+    //         'text'        => 'pages',
+    //         'url'         => 'admin/pages',
+    //         'icon'        => 'far fa-fw fa-file',
+    //         'label'       => 4,
+    //         'label_color' => 'success',
+    //     ],
+    //     ['header' => 'account_settings'],
+    //     [
+    //         'text' => 'profile',
+    //         'url'  => 'admin/settings',
+    //         'icon' => 'fas fa-fw fa-user',
+    //     ],
+    //     [
+    //         'text' => 'change_password',
+    //         'url'  => 'admin/settings',
+    //         'icon' => 'fas fa-fw fa-lock',
+    //     ],
+    //     [
+    //         'text'    => 'multilevel',
+    //         'icon'    => 'fas fa-fw fa-share',
+    //         'submenu' => [
+    //             [
+    //                 'text' => 'level_one',
+    //                 'url'  => '#',
+    //             ],
+    //             [
+    //                 'text'    => 'level_one',
+    //                 'url'     => '#',
+    //                 'submenu' => [
+    //                     [
+    //                         'text' => 'level_two',
+    //                         'url'  => '#',
+    //                     ],
+    //                     [
+    //                         'text'    => 'level_two',
+    //                         'url'     => '#',
+    //                         'submenu' => [
+    //                             [
+    //                                 'text' => 'level_three',
+    //                                 'url'  => '#',
+    //                             ],
+    //                             [
+    //                                 'text' => 'level_three',
+    //                                 'url'  => '#',
+    //                             ],
+    //                         ],
+    //                     ],
+    //                 ],
+    //             ],
+    //             [
+    //                 'text' => 'level_one',
+    //                 'url'  => '#',
+    //             ],
+    //         ],
+    //     ],
+    //     ['header' => 'labels'],
+    //     [
+    //         'text'       => 'important',
+    //         'icon_color' => 'red',
+    //     ],
+    //     [
+    //         'text'       => 'warning',
+    //         'icon_color' => 'yellow',
+    //     ],
+    //     [
+    //         'text'       => 'information',
+    //         'icon_color' => 'cyan',
+    //     ],
     ],
 
     /*
