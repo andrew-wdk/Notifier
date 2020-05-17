@@ -33,7 +33,7 @@
 
             <div class="box-body">
 
-                <table id="tbl-list-users" data-server="false" class="table table-bordered table-hover">
+                <table id="table" data-server="false" class="table table-bordered table-hover">
                     <thead>
                         <tr>
                             <th>ID</th>

@@ -237,42 +237,26 @@ return [
         [
             'text'        => 'Recipients',
             'url'         => 'recipients',
-            'icon'        => 'fa fa-fw fa-home',
+            'icon'        => 'fa fa-fw fa-user',
             'label_color' => 'success',
-            // 'submenu'     =>  [
-            //     [
-            //         'text' => 'Add Country',
-            //         'url'  => 'dashboard/country/create',
-            //         'icon'  => 'fa fa-plus'
-
-            //     ],
-            //     [
-            //         'text' => 'Show Country',
-            //         'url'  => 'dashboard/country',
-            //         'icon'  => 'fa fa-eye'
-
-            //     ]
-            // ]
         ],
         [
             'text'        => 'Messsages',
             'url'         => 'messages',
-            'icon'        => 'fa fa-fw fa-home',
+            'icon'        => 'fa fa-fw fa-envelope',
             'label_color' => 'success',
-            // 'submenu'     =>  [
-            //     [
-            //         'text' => 'Add City',
-            //         'url'  => 'dashboard/city/create',
-            //         'icon'  => 'fa fa-plus'
-
-            //     ],
-            //     [
-            //         'text' => 'Show City',
-            //         'url'  => 'dashboard/city',
-            //         'icon'  => 'fa fa-eye'
-
-            //     ]
-            // ]
+        ],
+        [
+            'text'        => 'Sent',
+            'url'         => 'sent',
+            'icon'        => 'fa fa-fw fa-check',
+            'label_color' => 'success',
+        ],
+        [
+            'text'        => 'Settings',
+            'url'         => 'settings/edit',
+            'icon'        => 'fa fa-fw fa-cog',
+            'label_color' => 'success',
         ],
     //     [
     //         'text' => 'search',

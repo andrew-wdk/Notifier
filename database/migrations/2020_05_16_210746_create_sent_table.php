@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRecipientsTable extends Migration
+class CreateSentTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateRecipientsTable extends Migration
      */
     public function up()
     {
-        Schema::create('recipients', function (Blueprint $table) {
+        Schema::create('sent', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('phone_number');
-            $table->date('last_contacted');
-            $table->date('due_date')->nullable();
-            $table->integer('message_id')->nullable();
+            $table->foreignId('recipient_id')->constrained()->onDelete('cascade');
+            $table->integer('status_code');
+            $table->string('resource_id')->nullable();
+            $table->string('delivery_report')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ class CreateRecipientsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('recipients');
+        Schema::dropIfExists('sents');
     }
 }

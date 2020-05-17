@@ -3,12 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Recipient;
-use Illuminate\Http\UploadedFile;
-use App\Imports\RecipientsImport;
-use Maatwebsite\Excel\Facades\Excel;
+use App\Sent;
 
-class RecipientsController extends Controller
+class SentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +14,10 @@ class RecipientsController extends Controller
      */
     public function index()
     {
-        $data['recipients'] = Recipient::paginate('15');
-        return view('recipients.index', $data);
+        $data['sent'] = Sent::paginate('15');
+        return view('sent.index', $data);
     }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -27,8 +25,9 @@ class RecipientsController extends Controller
      */
     public function create()
     {
-        return view('recipients.create');
+        //
     }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -37,11 +36,7 @@ class RecipientsController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
-
-        $recipient = Recipient::create($data);
-
-        return redirect()->route('recipients.index');
+        //
     }
 
     /**
@@ -63,8 +58,7 @@ class RecipientsController extends Controller
      */
     public function edit($id)
     {
-        $data['resource'] = Recipient::find($id);
-        return view('recipients.edit', $data);
+        //
     }
 
     /**
@@ -76,13 +70,7 @@ class RecipientsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = $request->all();
-
-        $recipient = Recipient::find($id);
-
-        $recipient->update($data);
-
-        return redirect()->route('recipients.index');
+        //
     }
 
     /**
@@ -93,18 +81,10 @@ class RecipientsController extends Controller
      */
     public function destroy($id)
     {
-        $recipient = Recipient::find($id);
+        $sent = Sent::find($id);
 
-        $recipient->delete();
+        $sent->delete();
 
-        return redirect()->route('recipients.index');
+        return redirect()->route('sent.index');
     }
-
-    public function import(Request $request)
-    {
-        Excel::import(new RecipientsImport, request()->file('excel'));
-
-        return redirect('/recipients')->with('success', 'All good!');
-    }
-
 }

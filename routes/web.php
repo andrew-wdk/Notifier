@@ -27,3 +27,8 @@ Route::resource('messages', 'MessagesController');
 
 Route::resource('recipients', 'RecipientsController');
 Route::post('recipients/import', 'RecipientsController@import')->name('recipients.import');
+
+Route::get('settings/edit', 'SettingsController@edit');
+Route::post('settings/update', 'SettingsController@update')->name('settings.update');
+
+Route::resource('sent', 'SentController');
