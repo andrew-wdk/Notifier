@@ -15,11 +15,11 @@ class CreateSettingsTable extends Migration
     {
         Schema::create('settings', function (Blueprint $table) {
             $table->id();
-            $table->string('sender_number');
-            $table->string('access_token');
-            $table->date('access_token_expiry');
-            $table->string('email');
-            $table->time('send_at');
+            $table->string('sender_number')->nullable();
+            $table->string('access_token')->nullable();
+            $table->date('access_token_expiry')->nullable();
+            $table->string('email')->nullable();
+            $table->time('send_at')->nullable();
             $table->timestamps();
         });
     }

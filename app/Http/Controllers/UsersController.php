@@ -70,9 +70,11 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $data = $request->all();
+        $data = $request->except('password');
 
-        $data['password'] = bcrypt($data['password']);
+        if($request->input('password')){
+            $data['password'] = bcrypt($data['password']);
+        }
 
         $user = User::find($id);
 

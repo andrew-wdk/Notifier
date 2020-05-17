@@ -19,16 +19,18 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::view('/home', 'home')->middleware('auth');
+Route::group(['middleware' => 'auth'], function () {
+    Route::view('/home', 'home');
 
-Route::resource('users', 'UsersController');
+    Route::resource('users', 'UsersController')->middleware('role:admin|super_admin');
 
-Route::resource('messages', 'MessagesController');
+    Route::resource('messages', 'MessagesController');
 
-Route::resource('recipients', 'RecipientsController');
-Route::post('recipients/import', 'RecipientsController@import')->name('recipients.import');
+    Route::resource('recipients', 'RecipientsController');
+    Route::post('recipients/import', 'RecipientsController@import')->name('recipients.import');
 
-Route::get('settings/edit', 'SettingsController@edit');
-Route::post('settings/update', 'SettingsController@update')->name('settings.update');
+    Route::get('settings/edit', 'SettingsController@edit')->name('settings.edit');
+    Route::post('settings/update', 'SettingsController@update')->name('settings.update');
 
-Route::resource('sent', 'SentController');
+    Route::resource('sent', 'SentController');
+});

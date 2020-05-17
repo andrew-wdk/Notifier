@@ -39,10 +39,9 @@
                 <div class="row">
                     <div class="form-group margin-bottom20 col-md-6">
                         <label class="control-label" for="password">
-                            <span class="text-danger">*</span>
                             Password
                         </label>
-                        {{ Form::text('password',null,['id'=>'password','required' => 'required','class' => 'form-control']) }}
+                        {{ Form::text('password',null,['id'=>'password','class' => 'form-control']) }}
                         <p class="text-danger" style="margin-bottom: 0;">{{ $errors->first('password') }}</p>
                     </div>
                 </div>
