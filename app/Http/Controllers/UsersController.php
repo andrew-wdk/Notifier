@@ -92,4 +92,23 @@ class UsersController extends Controller
         return redirect()->route('users.index');
     }
 
+    public function makeAdmin($id)
+    {
+        $user = User::find($id);
+
+        $user->assignRole('admin');
+
+        return redirect()->route('users.index');
+    }
+
+    public function removeAdmin($id)
+    {
+        $user = User::find($id);
+
+        $user->removeRole('admin');
+
+        return redirect()->route('users.index');
+    }
+
+
 }

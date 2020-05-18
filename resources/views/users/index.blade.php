@@ -33,20 +33,37 @@
                             <td>{{$user->name}}</td>
                             <td>{{$user->email}}</td>
                             <td>
-                                <div class="row col-md-6">
-                                    <div class="col-md-6">
-                                        <a class="btn btn-block btn-primary " style="width: 74.5px;"
+                                <div class="row col-md-12">
+                                    <div class="col-md-3">
+                                        <a class="btn btn-block btn-primary "
                                             href="{{ route('users.edit',$user->id) }}">
                                             Edit
                                         </a>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-3">
                                         {{ Form::open(['route' => ['users.destroy',$user->id] ,'method' => 'DELETE' ,'class' => 'delete-form']) }}
-                                        <button type="submit" style="width: 74.5px;" class="btn btn-block btn-danger ">
+                                        <button type="submit" class="btn btn-block btn-danger ">
                                             Delete
                                         </button>
                                         {{ Form::close() }}
                                     </div>
+                                    @if($user->hasRole('admin'))
+                                    <div class="col-md-6">
+                                        {{ Form::open(['route' => ['remove-admin',$user->id] ,'method' => 'POST' ,'class' => 'delete-form']) }}
+                                        <button type="submit" class="btn btn-block btn-secondary">
+                                            Remove Admin
+                                        </button>
+                                        {{ Form::close() }}
+                                    </div>
+                                    @else
+                                    <div class="col-md-6">
+                                        {{ Form::open(['route' => ['make-admin',$user->id] ,'method' => 'POST' ,'class' => 'delete-form']) }}
+                                        <button type="submit" class="btn btn-block btn-secondary">
+                                            Make Admin
+                                        </button>
+                                        {{ Form::close() }}
+                                    </div>
+                                    @endif
                                 </div>
                             </td>
                         </tr>

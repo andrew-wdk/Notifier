@@ -22,7 +22,11 @@ Auth::routes();
 Route::group(['middleware' => 'auth'], function () {
     Route::view('/home', 'home');
 
-    Route::resource('users', 'UsersController')->middleware('role:admin|super_admin');
+    Route::group(['middleware' => 'role:admin|super_admin'], function () {
+        Route::resource('users', 'UsersController');
+        Route::post('make-admin/{id}', 'UsersController@makeAdmin')->name('make-admin');
+        Route::post('remove-Admin/{id}', 'UsersController@removeAdmin')->name('remove-admin');
+    });
 
     Route::resource('messages', 'MessagesController');
 
