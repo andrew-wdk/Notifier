@@ -18,11 +18,11 @@ class Recipient extends Model
     public function getValidPhoneNumberAttribute($value)
     {
         $starting_digits = substr($value, 0, 2);
-        if($starting_digits == '01'){
+        if($starting_digits === '01'){
             return '2'.$value;
         }elseif($starting_digits === '+2'){
             return substr($value, 1);
-        }elseif($starting_digits == '20'){
+        }elseif($starting_digits === '20'){
             return $value;
         }else{
             return -1;

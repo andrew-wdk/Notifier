@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use App\Settings;
 use App\Recipient;
+use App\Message;
+use App\Sent;
+use App\Mail\MessageNotSent;
 use Illuminate\Support\Facades\Mail;
 
 
@@ -15,7 +18,7 @@ class SMSController extends Controller
     public function Authenticate()
     {
         $authorization_header = env('ORANGE_AUTHORIZATION_HEADER');
-        $response = Http::withHeaders(['Authorization' => $access_token])
+        $response = Http::withHeaders(['Authorization' => $authorization_header])
         ->asForm()->post('https://api.orange.com/oauth/v2/token', ['grant_type'=>'client_credentials']);
         $content = json_decode($response->content());
         $expiry = (strtotime(date('Y-m-d')) + $content->expires_in)->format('Y-m-d');
@@ -31,13 +34,13 @@ class SMSController extends Controller
     {
         $access_token_expiry = Settings::first()->access_token_expiry;
         if ($access_token_expiry == date('Y-m-d')){
-            Authenticate();
+            $this->Authenticate();
         }
         $recipients = Recipient::where('due_date', date("Y-m-d"))->get();
 
-        if(!$recipient->isEmpty()){
+        if(!$recipients->isEmpty()){
             foreach($recipients as $recipient){
-                sendMessage($recipient);
+                $this->sendMessage($recipient);
             }
         }
     }
@@ -48,7 +51,7 @@ class SMSController extends Controller
 
         $number = $recipient->valid_phone_number;
         if($number == -1){
-            Sent::create(['recipient_id' => $recipient_id, 'status_code' => -1]);
+            Sent::create(['recipient_id' => $recipient->id, 'status_code' => -1]);
             return;
         }
 
@@ -61,7 +64,7 @@ class SMSController extends Controller
         $response = Http::withHeaders([
             'Authorization' => 'Bearer '.$access_token,
             'Content-Type' => 'application/json'
-        ])->asForm()->post('https://api.orange.com/smsmessaging/v1/outbound/tel%3A%2B'.$sender_number.'/requests',
+        ])->post('https://api.orange.com/smsmessaging/v1/outbound/tel%3A%2B'.$sender_number.'/requests',
             ['outboundSMSMessageRequest' =>
                 ['address' => 'tel:+'.$number,
                 'senderAddress' => 'tel:+'.$sender_number,
@@ -74,11 +77,10 @@ class SMSController extends Controller
             $content = json_decode($response->content());
             $url = $content->outboundSMSMessageRequest->resourceURL;
             $resource_id = end(explode('/', $url));
-            Sent::create(['recipient_id' => $recipient_id, 'status_code' => $response->status(), 'resource_id' => $resource_id]);
+            Sent::create(['recipient_id' => $recipient->id, 'status_code' => $response->status(), 'resource_id' => $resource_id]);
         }
         else{
-            $email = $settings->email;
-            Sent::create(['recipient_id' => $recipient_id, 'status_code' => $response->status()]);
+            Sent::create(['recipient_id' => $recipient->id, 'status_code' => $response->status()]);
             Mail::to($settings->email)->send(new MessageNotSent($response));
         }
 
